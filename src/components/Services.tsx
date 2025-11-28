@@ -26,34 +26,64 @@ export default function Services({ data }: ServicesProps) {
   };
 
   return (
-    <section id="services" className="py-20 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <section id="services" className="py-20 px-4 relative">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-secondary/5 to-transparent pointer-events-none"></div>
+
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            What I'm <span className="gradient-text">Doing</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+          <div className="inline-block">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary"></div>
+              <h2 className="text-4xl lg:text-5xl font-bold font-mono">
+                <span className="text-primary">$</span> ls <span className="gradient-text">services/</span>
+              </h2>
+              <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary"></div>
+            </div>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {data.map((service, index) => (
             <div
               key={index}
-              className="glass-effect p-8 rounded-2xl card-hover group"
+              className="terminal-window terminal-dots p-8 pt-12 rounded-2xl card-hover group relative overflow-hidden"
             >
-              <div className="flex items-start gap-6">
-                <div className="p-4 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl group-hover:scale-110 transition-transform">
-                  <div className="text-primary">
-                    {getIcon(service.icon)}
+              {/* Hover effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <div className="relative z-10">
+                <div className="flex items-start gap-6">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-xl blur-lg opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="relative p-4 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl group-hover:scale-110 transition-transform border border-primary/30">
+                      <div className="text-primary">
+                        {getIcon(service.icon)}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-secondary font-mono text-sm">function</span>
+                      <h3 className="text-xl font-semibold text-primary font-mono">
+                        {service.title.replace(/\s+/g, '')}()
+                      </h3>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-gray-400 leading-relaxed pl-4 border-l-2 border-primary/30">
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-semibold mb-3 text-white">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed">
-                    {service.description}
-                  </p>
+
+                {/* Code-like decoration */}
+                <div className="mt-6 pt-4 border-t border-primary/10">
+                  <div className="font-mono text-xs text-gray-500">
+                    <span className="text-secondary">return</span>{' '}
+                    <span className="text-primary">"Excellence & Innovation"</span>
+                    <span className="text-gray-500">;</span>
+                  </div>
                 </div>
               </div>
             </div>
