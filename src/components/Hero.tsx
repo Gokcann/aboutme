@@ -20,7 +20,7 @@ export default function Hero({ data }: HeroProps) {
             <img
               src={data.avatar}
               alt={data.name}
-              className="relative rounded-full w-64 h-64 lg:w-80 lg:h-80 object-cover border-4 border-primary/50 shadow-2xl"
+                className="relative rounded-full w-64 h-64 lg:w-80 lg:h-80 object-contain border-4 border-primary/50 shadow-2xl bg-gradient-to-br from-dark-gray to-dark"
             />
           </div>
 
