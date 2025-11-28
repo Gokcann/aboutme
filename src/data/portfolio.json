@@ -5,7 +5,7 @@
     "email": "gokcan.akoya@gmail.com",
     "phone": "+90 (507) 345-8765",
     "location": "Eskişehir, Turkey",
-    "avatar": "/old-site/assets/images/Konu.png",
+"avatar": "https://raw.githubusercontent.com/Gokcann/aboutme/master/old-site/assets/images/Konu.png",
     "social": {
       "linkedin": "https://www.linkedin.com/in/gokcanakoya/",
       "github": "https://github.com/Gokcann",
