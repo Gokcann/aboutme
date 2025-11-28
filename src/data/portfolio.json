@@ -1,0 +1,72 @@
+{
+  "personal": {
+    "name": "Gökcan Akoya",
+    "title": "Backend Developer",
+    "email": "gokcan.akoya@gmail.com",
+    "phone": "+90 (507) 345-8765",
+    "location": "Eskişehir, Turkey",
+    "avatar": "/old-site/assets/images/Konu.png",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/gokcanakoya/",
+      "github": "https://github.com/Gokcann",
+      "bento": "https://bento.me/gokcan",
+      "twitter": "https://twitter.com/Gokcan26",
+      "instagram": "https://www.instagram.com/gokcan.26/"
+    }
+  },
+  "about": {
+    "description": [
+      "I'm a software developer who's not a programming language fanatic. I enjoy solving complex problems in a simple, beautiful and intuitive way.",
+      "Who tries to touch people's lives by doing my job to the best of my ability and has adopted the principle of continuous learning and continuous development."
+    ]
+  },
+  "services": [
+    {
+      "title": "Backend Development",
+      "description": "Development and maintenance of backend applications shaped according to needs.",
+      "icon": "code"
+    },
+    {
+      "title": "Photography",
+      "description": "I make high-quality photos of any category at a professional level.",
+      "icon": "camera"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Dokuz Eylul University",
+      "degree": "Bachelor of Computer Science",
+      "faculty": "Faculty of Science",
+      "period": "2013 — 2018"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Software Developer",
+      "period": "2021 April — 2023 December",
+      "responsibilities": [
+        "Worked on a scalable, distributed backend system which is based on microservices architecture.",
+        "Fixed critical payment calculations bugs and prevented the company from losing money.",
+        "Bug fixes and revisions in the backend system that serves millions of users in the insurance industry."
+      ]
+    },
+    {
+      "title": "Jr. Software Developer",
+      "period": "2020 July — 2021 March",
+      "responsibilities": [
+        "Developing software that works in parallel with PACS.",
+        "Integration of developed software into live hospital environments.",
+        "Modification of open source projects Dcm4chee and Weasis to increase their efficiency."
+      ]
+    }
+  ],
+  "skills": [
+    "Java",
+    "Spring Framework",
+    "OOP",
+    "RDBMS",
+    "SQL & PL/SQL",
+    "Git & SubVersion",
+    "REST"
+  ]
+}
