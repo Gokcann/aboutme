@@ -9,7 +9,6 @@
     "social": {
       "linkedin": "https://www.linkedin.com/in/gokcanakoya/",
       "github": "https://github.com/Gokcann",
-      "bento": "https://bento.me/gokcan",
       "twitter": "https://twitter.com/Gokcan26",
       "instagram": "https://www.instagram.com/gokcan.26/"
     }
@@ -42,7 +41,16 @@
   ],
   "experience": [
     {
-      "title": "Software Developer",
+      "title": "Metasoft - Jr. Software Developer",
+      "period": "2020 July — 2021 March",
+      "responsibilities": [
+        "Developing software that works in parallel with PACS.",
+        "Integration of developed software into live hospital environments.",
+        "Modification of open source projects Dcm4chee and Weasis to increase their efficiency."
+      ]
+    },
+    {
+      "title": "Agito - Software Developer",
       "period": "2021 April — 2023 December",
       "responsibilities": [
         "Worked on a scalable, distributed backend system which is based on microservices architecture.",
@@ -51,22 +59,24 @@
       ]
     },
     {
-      "title": "Jr. Software Developer",
-      "period": "2020 July — 2021 March",
+      "title": "Software Developer",
+      "period": "2024 April — Present",
       "responsibilities": [
-        "Developing software that works in parallel with PACS.",
-        "Integration of developed software into live hospital environments.",
-        "Modification of open source projects Dcm4chee and Weasis to increase their efficiency."
+        "Developed various services and applications using Node.js.",
+        "Built web scrapers with Python and performed bug fixes on existing ones.",
+        "Designed and deployed a scalable and highly available system on AWS infrastructure."
       ]
     }
   ],
   "skills": [
+    "NodeJS",
     "Java",
     "Spring Framework",
-    "OOP",
-    "RDBMS",
-    "SQL & PL/SQL",
-    "Git & SubVersion",
-    "REST"
+    "AWS",
+    "PL/SQL",
+    "Kafka",
+    "OpenSearch",
+    "PostgreSQL",
+    "Git & SubVersion"
   ]
 }
