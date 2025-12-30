@@ -84,10 +84,29 @@
   ],
   "projects": [
     {
-      "title": "EV-Exchange",
-      "description": "This app runs on Amazon EC2 instance and uses PostgreSQL on Amazon RDS. Sequelize was used on the ORM side and was written in Node.js.",
+      "title": "Trend Analytics",
+      "description": "Enterprise SaaS platform for Trendyol sellers. Buy Box optimization with 4-factor scoring algorithm, smart pricing strategies, competitor tracking with anti-detection, and real-time notifications.",
+      "technologies": ["NestJS", "PostgreSQL", "TimescaleDB", "Redis", "Puppeteer", "React"],
+      "isPrivate": true
+    },
+    {
+      "title": "Google Maps Scraper",
+      "description": "Web scraper for collecting pharmacy data across Turkish cities. Features CAPTCHA detection, stealth mode, rate limiting, and data validation with retry mechanisms.",
+      "technologies": ["Python", "FastAPI", "Playwright", "PostgreSQL", "React"],
+      "github": "https://github.com/Gokcann/google-maps-scraper",
+      "isPrivate": true
+    },
+    {
+      "title": "EvaExchange",
+      "description": "Trading application deployed on AWS infrastructure. RESTful API with MVC architecture, database migrations, and cloud-native deployment.",
       "technologies": ["Node.js", "PostgreSQL", "AWS EC2", "AWS RDS", "Sequelize"],
-      "github": "https://github.com/Gokcann"
+      "github": "https://github.com/Gokcann/EvaExchange"
+    },
+    {
+      "title": "BankAccount",
+      "description": "Banking system API built with Spring Boot. Features account management, transactions, and containerized deployment with Docker.",
+      "technologies": ["Java 11", "Spring Boot", "Maven", "Docker"],
+      "github": "https://github.com/Gokcann/BankAccount"
     }
   ]
 }
