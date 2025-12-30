@@ -1,11 +1,11 @@
 {
   "personal": {
     "name": "Gökcan Akoya",
-    "title": "Backend Developer",
+    "title": "Software Developer",
     "email": "gokcan.akoya@gmail.com",
     "phone": "+90 (507) 345-8765",
     "location": "Eskişehir, Turkey",
-"avatar": "https://raw.githubusercontent.com/Gokcann/aboutme/master/old-site/assets/images/Konu.png",
+    "avatar": "https://raw.githubusercontent.com/Gokcann/aboutme/master/old-site/assets/images/Konu.png",
     "social": {
       "linkedin": "https://www.linkedin.com/in/gokcanakoya/",
       "github": "https://github.com/Gokcann",
@@ -15,20 +15,25 @@
   },
   "about": {
     "description": [
-      "I'm a software developer who's not a programming language fanatic. I enjoy solving complex problems in a simple, beautiful and intuitive way.",
-      "Who tries to touch people's lives by doing my job to the best of my ability and has adopted the principle of continuous learning and continuous development."
+      "I approach every project with a commitment to two core principles: continuous learning and continuous development—both of myself and the systems I build.",
+      "My goal is simple: write code that doesn't just work, but that genuinely improves how people do their work."
     ]
   },
   "services": [
     {
       "title": "Backend Development",
-      "description": "Development and maintenance of backend applications shaped according to needs.",
+      "description": "Designing scalable backend systems with microservices architecture using Node.js, Java, and AWS.",
       "icon": "code"
     },
     {
-      "title": "Photography",
-      "description": "I make high-quality photos of any category at a professional level.",
-      "icon": "camera"
+      "title": "Data Integration",
+      "description": "Building robust scrapers and APIs for real-time market insights and data processing.",
+      "icon": "database"
+    },
+    {
+      "title": "Intelligent Automation",
+      "description": "Developing algorithms for pricing optimization, competitor tracking, and business automation.",
+      "icon": "cpu"
     }
   ],
   "education": [
@@ -41,42 +46,48 @@
   ],
   "experience": [
     {
-      "title": "Metasoft - Jr. Software Developer",
-      "period": "2020 July — 2021 March",
+      "title": "Eva Commerce Inc. - Software Developer",
+      "period": "2024 April — Present",
       "responsibilities": [
-        "Developing software that works in parallel with PACS.",
-        "Integration of developed software into live hospital environments.",
-        "Modification of open source projects Dcm4chee and Weasis to increase their efficiency."
+        "Microservices Architecture - Designing scalable backend systems with Node.js and AWS (EC2, S3).",
+        "Data Integration - Building robust scrapers and APIs for real-time market insights.",
+        "Intelligent Automation - Developing algorithms for pricing optimization and competitor tracking."
       ]
     },
     {
       "title": "Agito - Software Developer",
-      "period": "2021 April — 2023 December",
+      "period": "2021 April — 2024 January",
       "responsibilities": [
-        "Worked on a scalable, distributed backend system which is based on microservices architecture.",
-        "Fixed critical payment calculations bugs and prevented the company from losing money.",
+        "Worked on the development and maintenance of an enterprise-level, distributed backend system built around an Oracle database and featuring comprehensive PL/SQL business logic.",
         "Bug fixes and revisions in the backend system that serves millions of users in the insurance industry."
       ]
     },
     {
-      "title": "Software Developer",
-      "period": "2024 April — Present",
+      "title": "Metasoft - Jr. Software Developer",
+      "period": "2020 May — 2021 March",
       "responsibilities": [
-        "Developed various services and applications using Node.js.",
-        "Built web scrapers with Python and performed bug fixes on existing ones.",
-        "Designed and deployed a scalable and highly available system on AWS infrastructure."
+        "Integration of developed software into live hospital environments.",
+        "Modification of open source projects to increase their efficiency."
       ]
     }
   ],
   "skills": [
-    "NodeJS",
-    "Java",
-    "Spring Framework",
-    "AWS",
-    "PL/SQL",
+    "Java (Spring)",
+    "SQL (PL/SQL)",
+    "JavaScript (Node & React)",
+    "Git",
+    "RDBMS",
+    "AWS (EC2, RDS)",
+    "Redis",
     "Kafka",
-    "OpenSearch",
-    "PostgreSQL",
-    "Git & SubVersion"
+    "OpenSearch"
+  ],
+  "projects": [
+    {
+      "title": "EV-Exchange",
+      "description": "This app runs on Amazon EC2 instance and uses PostgreSQL on Amazon RDS. Sequelize was used on the ORM side and was written in Node.js.",
+      "technologies": ["Node.js", "PostgreSQL", "AWS EC2", "AWS RDS", "Sequelize"],
+      "github": "https://github.com/Gokcann"
+    }
   ]
 }

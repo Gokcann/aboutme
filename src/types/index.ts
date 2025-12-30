@@ -8,9 +8,9 @@ export interface Personal {
   social: {
     linkedin: string;
     github: string;
-    bento: string;
     twitter: string;
     instagram: string;
+    bento?: string;
   };
 }
 
@@ -37,6 +37,14 @@ export interface Experience {
   responsibilities: string[];
 }
 
+export interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+  github?: string;
+  live?: string;
+}
+
 export interface PortfolioData {
   personal: Personal;
   about: About;
@@ -44,4 +52,5 @@ export interface PortfolioData {
   education: Education[];
   experience: Experience[];
   skills: string[];
+  projects: Project[];
 }
