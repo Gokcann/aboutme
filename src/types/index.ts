@@ -43,6 +43,7 @@ export interface Project {
   technologies: string[];
   github?: string;
   live?: string;
+  isPrivate?: boolean;
 }
 
 export interface PortfolioData {

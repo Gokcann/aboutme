@@ -28,7 +28,7 @@ export default function Projects({ data }: ProjectsProps) {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {data.map((project, index) => (
             <div
               key={index}
@@ -36,6 +36,16 @@ export default function Projects({ data }: ProjectsProps) {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
+              {/* Private badge */}
+              {project.isPrivate && (
+                <div className="absolute top-3 right-4 flex items-center gap-1.5 px-2 py-1 bg-accent/20 border border-accent/40 rounded-full">
+                  <svg className="w-3 h-3 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/>
+                  </svg>
+                  <span className="text-[10px] text-accent font-mono font-medium">Private</span>
+                </div>
+              )}
+
               {/* Project header */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -72,7 +82,7 @@ export default function Projects({ data }: ProjectsProps) {
 
               {/* Links */}
               <div className="flex items-center gap-4 pt-4 border-t border-primary/20">
-                {project.github && (
+                {project.github ? (
                   <a
                     href={project.github}
                     target="_blank"
@@ -84,7 +94,14 @@ export default function Projects({ data }: ProjectsProps) {
                     </svg>
                     <span className="font-mono">View Code</span>
                   </a>
-                )}
+                ) : project.isPrivate ? (
+                  <div className="flex items-center gap-2 text-gray-500 text-sm">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/>
+                    </svg>
+                    <span className="font-mono">Private Repository</span>
+                  </div>
+                ) : null}
                 {project.live && (
                   <a
                     href={project.live}
