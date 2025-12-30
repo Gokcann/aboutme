@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import type { Personal } from '../types';
 
 interface HeroProps {
@@ -7,6 +7,8 @@ interface HeroProps {
 
 export default function Hero({ data }: HeroProps) {
   const [displayedText, setDisplayedText] = useState('');
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const heroRef = useRef<HTMLDivElement>(null);
   const fullText = data.title;
 
   useEffect(() => {
@@ -23,8 +25,21 @@ export default function Hero({ data }: HeroProps) {
     return () => clearInterval(timer);
   }, [fullText]);
 
+  // Mouse tracking for parallax effect
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!heroRef.current) return;
+    const rect = heroRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / 25;
+    const y = (e.clientY - rect.top - rect.height / 2) / 25;
+    setMousePosition({ x, y });
+  };
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
+    <section
+      ref={heroRef}
+      onMouseMove={handleMouseMove}
+      className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden"
+    >
       {/* Matrix-style background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0F] via-[#13131A] to-[#0A0A0F]"></div>
@@ -33,24 +48,64 @@ export default function Hero({ data }: HeroProps) {
 
         {/* Grid overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,217,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,217,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+
+        {/* Floating particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-primary/30 rounded-full animate-float-particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${5 + Math.random() * 10}s`
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="container mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-          {/* Avatar with glowing effect */}
-          <div className="relative group float-animation">
-            <div className="absolute -inset-2 bg-gradient-to-r from-primary via-secondary to-accent rounded-full blur-xl opacity-60 group-hover:opacity-100 transition duration-1000 pulse-glow"></div>
+          {/* Avatar with parallax effect */}
+          <div
+            className="relative group"
+            style={{
+              transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`
+            }}
+          >
+            {/* Animated ring */}
+            <div className="absolute -inset-4 rounded-full border-2 border-primary/20 animate-spin-slow"></div>
+            <div className="absolute -inset-8 rounded-full border border-secondary/10 animate-spin-reverse"></div>
+
+            {/* Glow effect */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-primary via-secondary to-accent rounded-full blur-2xl opacity-40 group-hover:opacity-70 transition duration-700"></div>
+
             <div className="relative">
-              <img
-                src={data.avatar}
-                alt={data.name}
-                className="relative rounded-full w-64 h-64 lg:w-80 lg:h-80 object-contain border-4 border-primary/30 shadow-2xl bg-gradient-to-br from-dark-gray to-dark"
-              />
-              {/* Corner decorations */}
-              <div className="absolute -top-2 -left-2 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
-              <div className="absolute -top-2 -right-2 w-8 h-8 border-t-4 border-r-4 border-secondary rounded-tr-lg"></div>
-              <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-4 border-l-4 border-accent rounded-bl-lg"></div>
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
+              {/* Avatar image with proper masking */}
+              <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-primary/40 shadow-2xl group-hover:border-primary/60 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark-gray to-dark"></div>
+                <img
+                  src={data.avatar}
+                  alt={data.name}
+                  className="relative w-full h-full object-cover object-top scale-110 group-hover:scale-115 transition-transform duration-700"
+                />
+                {/* Overlay gradient for blending */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent"></div>
+              </div>
+
+              {/* Animated corner decorations */}
+              <div className="absolute -top-4 -left-4 w-10 h-10 border-t-4 border-l-4 border-primary rounded-tl-xl animate-pulse-corner"></div>
+              <div className="absolute -top-4 -right-4 w-10 h-10 border-t-4 border-r-4 border-secondary rounded-tr-xl animate-pulse-corner" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute -bottom-4 -left-4 w-10 h-10 border-b-4 border-l-4 border-accent rounded-bl-xl animate-pulse-corner" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute -bottom-4 -right-4 w-10 h-10 border-b-4 border-r-4 border-primary rounded-br-xl animate-pulse-corner" style={{ animationDelay: '1.5s' }}></div>
+
+              {/* Status indicator */}
+              <div className="absolute bottom-4 right-4 flex items-center gap-2 glass-effect px-3 py-1.5 rounded-full">
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                <span className="text-xs text-green-400 font-mono">Available</span>
+              </div>
             </div>
           </div>
 
@@ -82,10 +137,11 @@ export default function Hero({ data }: HeroProps) {
                     <span className="text-gray-400">ls -la skills/</span>
                   </div>
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {['Node.js', 'Java', 'AWS', 'PostgreSQL', 'Kafka'].map((skill) => (
+                    {['Node.js', 'Java', 'Spring', 'AWS', 'Kafka', 'Redis'].map((skill, index) => (
                       <span
                         key={skill}
-                        className="px-3 py-1 text-xs bg-primary/10 border border-primary/30 rounded text-primary font-medium"
+                        className="px-3 py-1 text-xs bg-primary/10 border border-primary/30 rounded text-primary font-medium hover:bg-primary/20 hover:scale-105 transition-all cursor-default animate-fade-in-up"
+                        style={{ animationDelay: `${index * 0.1}s` }}
                       >
                         {skill}
                       </span>

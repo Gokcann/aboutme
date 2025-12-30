@@ -3,6 +3,7 @@ import About from './components/About';
 import Services from './components/Services';
 import Resume from './components/Resume';
 import Skills from './components/Skills';
+import Projects from './components/Projects';
 import Footer from './components/Footer';
 import portfolioData from './data/portfolio.json';
 import type { PortfolioData } from './types';
@@ -17,6 +18,7 @@ function App() {
       <Services data={data.services} />
       <Resume education={data.education} experience={data.experience} />
       <Skills data={data.skills} />
+      <Projects data={data.projects} />
       <Footer />
     </div>
   );
