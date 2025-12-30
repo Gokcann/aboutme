@@ -1,57 +1,76 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import type { ReactElement } from 'react';
 
 interface SkillsProps {
   data: string[];
 }
 
-const skillLevels: { [key: string]: number } = {
-  'Java (Spring)': 85,
-  'SQL (PL/SQL)': 80,
-  'JavaScript (Node & React)': 90,
-  'Git': 85,
-  'RDBMS': 80,
-  'AWS (EC2, RDS)': 85,
-  'Redis': 75,
-  'Kafka': 80,
-  'OpenSearch': 70
-};
-
-const skillIcons: { [key: string]: string } = {
-  'Java (Spring)': '☕',
-  'SQL (PL/SQL)': '🗄️',
-  'JavaScript (Node & React)': '⚡',
-  'Git': '🔀',
-  'RDBMS': '💾',
-  'AWS (EC2, RDS)': '☁️',
-  'Redis': '🔴',
-  'Kafka': '📨',
-  'OpenSearch': '🔍'
+// Icon components for each technology
+const techIcons: { [key: string]: ReactElement } = {
+  'Java (Spring)': (
+    <svg viewBox="0 0 128 128" className="w-12 h-12">
+      <path fill="#EA2D2E" d="M47.617 98.12c-19.192 5.362 11.677 16.439 36.115 5.969-4.003-1.556-6.874-3.351-6.874-3.351-10.897 2.06-15.952 2.222-25.844 1.092-8.164-.935-3.397-3.71-3.397-3.71zm33.189-10.46c-14.444 2.779-22.787 2.69-33.354 1.6-8.171-.845-2.822-4.805-2.822-4.805-21.137 7.016 11.767 14.977 41.309 6.336-3.14-1.106-5.133-3.131-5.133-3.131zm11.319-60.575c.001 0-42.731 10.669-22.323 34.187 6.024 6.935-1.58 13.17-1.58 13.17s15.289-7.891 8.269-17.777c-6.559-9.215-11.587-13.793 15.634-29.58zm9.998 81.144s3.529 2.91-3.888 5.159c-14.102 4.272-58.706 5.56-71.095.171-4.45-1.938 3.899-4.625 6.526-5.192 2.739-.593 4.303-.485 4.303-.485-4.952-3.487-32.013 6.85-13.742 9.815 49.821 8.076 90.817-3.637 77.896-9.468zM85 77.896c2.395-1.634 5.703-3.053 5.703-3.053s-9.424 1.685-18.813 2.474c-11.494.966-23.819 1.191-29.983.326-14.562-2.046 7.991-7.692 7.991-7.692s-8.764-.354-19.674 2.644c-12.926 3.556.037 10.185 17.894 11.103 21.852 1.123 36.888-2.168 36.882-5.802zm-27.831 21.727c20.073 1.266 50.917-1.663 51.647-7.678 0 0-1.405 3.608-16.609 6.47-17.129 3.225-38.27 2.848-50.827.781 0-.001 2.569 2.126 15.789.427z"/>
+    </svg>
+  ),
+  'SQL (PL/SQL)': (
+    <svg viewBox="0 0 128 128" className="w-12 h-12">
+      <path fill="#00758F" d="M116.948 97.807c-6.863-.187-12.104.452-16.585 2.341-1.273.537-3.305.552-3.513 2.147.7.733.807 1.83 1.355 2.731 1.053 1.73 2.832 4.048 4.444 5.271 1.764 1.337 3.585 2.774 5.467 3.922 3.348 2.042 7.092 3.203 10.317 5.237 1.899 1.199 3.788 2.714 5.639 4.052.916.664 1.531 1.699 2.67 2.136v-.236c-.615-.771-1.122-1.836-1.897-2.459-1.179-1.012-2.396-2.02-3.638-2.958-3.646-2.758-7.778-4.864-11.747-7.15-3.209-1.848-10.095-4.287-11.42-7.853l-.216-.218c2.214-.249 4.807-.862 6.898-1.407 3.467-.905 6.566-.751 10.138-1.634 1.594-.393 3.185-.821 4.782-1.236v-.77c-1.789-1.835-3.068-4.269-5.056-5.878-5.196-4.203-10.869-8.091-16.567-11.685-3.119-1.967-6.974-3.239-10.302-4.921-1.114-.564-3.08-1.065-3.861-1.943-1.785-2.251-2.758-5.109-4.092-7.693-2.796-5.418-5.479-11.319-7.961-17.015-1.692-3.894-2.767-7.761-4.893-11.398-10.179-17.386-21.135-27.874-38.098-38.195-3.608-2.192-7.953-3.056-12.53-4.181l-7.415-.443c-1.507-.631-3.067-2.469-4.431-3.321-5.407-3.378-19.318-10.717-23.332-1.026-2.535 6.125 3.801 12.108 5.997 15.193 1.542 2.168 3.525 4.61 4.6 7.044 .704 1.594 .825 3.196 1.399 4.907 1.416 4.222 2.64 8.825 4.444 12.778 .91 1.996 1.919 4.079 3.073 5.919 .709 1.131 1.922 1.629 2.195 3.349-1.232 1.727-1.302 4.41-1.99 6.602-3.098 9.876-1.929 22.122 2.588 29.421 1.387 2.239 4.651 7.051 9.1 5.197 3.893-1.623 3.024-6.651 4.14-11.11 .252-1.012 .096-1.752 .578-2.446v.231c1.148 2.302 2.298 4.593 3.431 6.898 2.546 4.134 7.057 8.435 10.798 11.321 1.94 1.498 3.457 4.094 5.933 5.036v-.244h-.218c-.492-.764-1.252-1.081-1.897-1.656-1.518-1.355-3.206-3.052-4.44-4.573-3.521-4.346-6.64-9.112-9.497-13.985-1.375-2.345-2.566-4.93-3.671-7.394-.432-. 964-. 428-2.379-1.146-3.11-1.077 1.633-2.685 2.943-3.522 4.921-1.338 3.164-1.511 7.026-1.997 11.049-.289.091-.163.028-.363.122-.878-.251-1.184-1.158-1.512-1.948-. 831-1.997-.957-5.233-.667-7.784 .753-6.601 2.371-11.808 4.771-15.611 1.134-1.797 5.512-7.434 3.717-9.19-.703-2.132-3.015-3.39-4.313-5.053-1.61-2.063-3.214-4.787-4.318-7.193-2.872-6.263-4.222-13.256-7.331-19.519-1.459-2.942-3.936-5.925-5.97-8.562-2.266-2.937-4.789-5.098-6.616-8.55-.647-1.225-1.535-3.176-.533-4.498 .321-1.088.978-.974 1.913-1.36 1.625-.673 3.124-.243 4.716.237 4.241 1.279 7.813 2.513 11.316 4.701 1.662 1.038 3.342 3.047 5.427 3.551h2.387c3.731.858 7.914.267 11.411 1.349 6.172 1.908 11.69 4.819 16.632 8.117 15.049 10.04 27.408 24.333 35.809 41.415 1.354 2.754 1.936 5.345 3.174 8.208 2.488 5.758 5.629 11.687 8.125 17.306 2.493 5.612 4.936 11.264 8.528 15.86 1.889 2.415 9.176 3.713 12.495 5.056 2.326.94 6.122 1.918 8.262 3.122 4.083 2.299 8.019 4.935 11.857 7.527 1.919 1.297 7.842 4.131 8.169 6.489z"/>
+    </svg>
+  ),
+  'JavaScript (Node & React)': (
+    <svg viewBox="0 0 128 128" className="w-12 h-12">
+      <path fill="#F0DB4F" d="M1.408 1.408h125.184v125.184H1.408z"/>
+      <path fill="#323330" d="M116.347 96.736c-.917-5.711-4.641-10.508-15.672-14.981-3.832-1.761-8.104-3.022-9.377-5.926-.452-1.69-.512-2.642-.226-3.665.821-3.32 4.784-4.355 7.925-3.403 2.023.678 3.938 2.237 5.093 4.724 5.402-3.498 5.391-3.475 9.163-5.879-1.381-2.141-2.118-3.129-3.022-4.045-3.249-3.629-7.676-5.498-14.756-5.355l-3.688.477c-3.534.893-6.902 2.748-8.877 5.235-5.926 6.724-4.236 18.492 2.975 23.335 7.104 5.332 17.54 6.545 18.873 11.531 1.297 6.104-4.486 8.08-10.234 7.378-4.236-.881-6.592-3.034-9.139-6.949-4.688 2.713-4.688 2.713-9.508 5.485 1.143 2.499 2.344 3.63 4.26 5.795 9.068 9.198 31.76 8.746 35.83-5.176.165-.478 1.261-3.666.38-8.581zM69.462 58.943H57.753l-.048 30.272c0 6.438.333 12.34-.714 14.149-1.713 3.558-6.152 3.117-8.175 2.427-2.059-1.012-3.106-2.451-4.319-4.485-.333-.584-.583-1.036-.667-1.071l-9.52 5.83c1.583 3.249 3.915 6.069 6.902 7.901 4.462 2.678 10.459 3.499 16.731 2.059 4.082-1.189 7.604-3.652 9.448-7.401 2.666-4.915 2.094-10.864 2.07-17.444.06-10.735.001-21.468.001-32.237z"/>
+    </svg>
+  ),
+  'Git': (
+    <svg viewBox="0 0 128 128" className="w-12 h-12">
+      <path fill="#F34F29" d="M124.737 58.378L69.621 3.264c-3.172-3.174-8.32-3.174-11.497 0L46.68 14.71l14.518 14.518c3.375-1.139 7.243-.375 9.932 2.314 2.703 2.706 3.461 6.607 2.294 9.993l13.992 13.993c3.385-1.167 7.292-.413 9.994 2.295 3.78 3.777 3.78 9.9 0 13.679a9.673 9.673 0 01-13.683 0 9.677 9.677 0 01-2.105-10.521L68.574 47.933l-.002 34.341a9.708 9.708 0 012.559 1.828c3.778 3.777 3.778 9.898 0 13.683-3.779 3.777-9.904 3.777-13.679 0-3.778-3.784-3.778-9.905 0-13.683a9.65 9.65 0 013.167-2.11V47.333a9.581 9.581 0 01-3.167-2.111c-2.862-2.86-3.551-7.06-2.083-10.576L41.056 20.333 3.264 58.123a8.133 8.133 0 000 11.5l55.117 55.114c3.174 3.174 8.32 3.174 11.499 0l54.858-54.858a8.135 8.135 0 00-.001-11.501z"/>
+    </svg>
+  ),
+  'RDBMS': (
+    <svg viewBox="0 0 128 128" className="w-12 h-12">
+      <path fill="#336791" d="M64 8C35.243 8 12 31.243 12 60s23.243 52 52 52 52-23.243 52-52S92.757 8 64 8zm0 8c24.337 0 44 19.663 44 44S88.337 104 64 104 20 84.337 20 60s19.663-44 44-44z"/>
+      <path fill="#336791" d="M64 28c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm0 8c13.255 0 24 10.745 24 24S77.255 84 64 84 40 73.255 40 60s10.745-24 24-24z"/>
+      <circle fill="#336791" cx="64" cy="60" r="12"/>
+    </svg>
+  ),
+  'AWS (EC2, RDS)': (
+    <svg viewBox="0 0 128 128" className="w-12 h-12">
+      <path fill="#F7A80D" d="M38.089 77.466l-11.4 4.896 10.559 4.514 12.241-4.514-11.4-4.896zm-15.07 6.39l-.759 20.784 13.484 5.841V89.439l-12.725-5.583zm29.769 0l-12.725 5.583v21.042l13.484-5.841-.759-20.784z"/>
+      <path fill="#F7A80D" d="M77.517 77.466l-11.4 4.896 10.559 4.514 12.241-4.514-11.4-4.896zm-15.071 6.39l-.759 20.784 13.485 5.841V89.439l-12.726-5.583zm29.77 0L79.49 89.44v21.042l13.484-5.841-.759-20.784z"/>
+      <path fill="#F7A80D" d="M58.803 58.133l-11.4 4.897 10.559 4.514 12.241-4.514-11.4-4.897zm-15.071 6.39l-.759 20.785 13.485 5.841V70.107l-12.726-5.584zm29.77 0l-12.726 5.584v21.042l13.485-5.841-.759-20.785z"/>
+    </svg>
+  ),
+  'Redis': (
+    <svg viewBox="0 0 128 128" className="w-12 h-12">
+      <path fill="#A41E11" d="M121.8 93.1c-6.7 3.5-41.4 17.7-48.8 21.6-7.4 3.9-11.5 3.8-17.3 1S13 98.1 6.3 94.9c-3.3-1.6-5-2.9-5-4.2V78.1c0 0 48.3-10.5 55.9-13.2 7.6-2.7 10.1-2.8 16.9-.4 6.8 2.4 50.5 10.4 50.5 10.4v12.5c0 1.3-1.5 2.7-4.8 4.3"/>
+      <path fill="#D82C20" d="M121.8 80.5C115.1 84 80.4 98.2 73 102.1c-7.4 3.9-11.5 3.8-17.3 1-5.8-2.8-42.7-17.7-49.4-20.9C-.4 78.9-2 76.9 1.6 75.2c3.6-1.7 42.1-16.5 49.7-19.2 7.6-2.7 10.1-2.8 16.9-.4s46.4 18.1 50.1 19.8c3.6 1.7 10.2 3.8 3.5 5.1"/>
+      <path fill="#A41E11" d="M121.8 72.5c-6.7 3.5-41.4 17.7-48.8 21.6-7.4 3.9-11.5 3.8-17.3 1S13 77.5 6.3 74.3c-3.3-1.6-5-2.9-5-4.2V57.5c0 0 48.3-10.5 55.9-13.2 7.6-2.7 10.1-2.8 16.9-.4 6.8 2.4 50.5 10.4 50.5 10.4v12.5c0 1.3-1.5 2.7-4.8 4.3"/>
+      <path fill="#D82C20" d="M121.8 59.9c-6.7 3.5-41.4 17.7-48.8 21.6-7.4 3.9-11.5 3.8-17.3 1S13 64.9 6.3 61.7C-.4 58.4-2 56.3 1.6 54.6c3.6-1.7 42.1-16.5 49.7-19.2 7.6-2.7 10.1-2.8 16.9-.4s46.4 18.1 50.1 19.8c3.6 1.6 10.2 3.7 3.5 5.1"/>
+      <path fill="#A41E11" d="M121.8 51c-6.7 3.5-41.4 17.7-48.8 21.6-7.4 3.9-11.5 3.8-17.3 1S13 56 6.3 52.8c-3.3-1.6-5-2.9-5-4.2V36c0 0 48.3-10.5 55.9-13.2 7.6-2.7 10.1-2.8 16.9-.4 6.8 2.4 50.5 10.4 50.5 10.4v12.5c0 1.3-1.5 2.6-4.8 4.2"/>
+      <path fill="#D82C20" d="M121.8 38.4C115.1 41.9 80.4 56.1 73 60c-7.4 3.9-11.5 3.8-17.3 1S13 43.4 6.3 40.2C-.4 36.9-2 34.8 1.6 33.1c3.6-1.7 42.1-16.5 49.7-19.2 7.6-2.7 10.1-2.8 16.9-.4s46.4 18.1 50.1 19.8c3.6 1.7 10.2 3.8 3.5 5.1"/>
+    </svg>
+  ),
+  'Kafka': (
+    <svg viewBox="0 0 128 128" className="w-12 h-12">
+      <path fill="#231F20" d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64 64-28.7 64-64S99.3 0 64 0z"/>
+      <path fill="#FFF" d="M83.7 56.6c-2.8 0-5.3 1.1-7.2 2.9l-6.5-3.8c.4-1.2.6-2.5.6-3.9 0-1.3-.2-2.6-.6-3.8l6.5-3.8c1.9 1.8 4.4 2.9 7.2 2.9 5.8 0 10.5-4.7 10.5-10.5S89.5 26 83.7 26s-10.5 4.7-10.5 10.5c0 1 .1 1.9.4 2.8l-6.7 3.9c-2.5-3.2-6.4-5.2-10.8-5.2-7.6 0-13.8 6.2-13.8 13.8 0 7.6 6.2 13.8 13.8 13.8 4.4 0 8.3-2.1 10.8-5.3l6.7 3.9c-.2.9-.4 1.8-.4 2.8 0 5.8 4.7 10.5 10.5 10.5s10.5-4.7 10.5-10.5-4.7-10.4-10.5-10.4zM56.1 60.2c-5.3 0-9.5-4.3-9.5-9.5s4.3-9.5 9.5-9.5c5.3 0 9.5 4.3 9.5 9.5s-4.2 9.5-9.5 9.5zm27.6-29.8c3.5 0 6.4 2.9 6.4 6.4s-2.9 6.4-6.4 6.4-6.4-2.9-6.4-6.4 2.9-6.4 6.4-6.4zm0 42.6c-3.5 0-6.4-2.9-6.4-6.4s2.9-6.4 6.4-6.4 6.4 2.9 6.4 6.4-2.9 6.4-6.4 6.4zM56.1 83.3c-2.8 0-5.3-1.1-7.2-2.9l-6.5 3.8c.4 1.2.6 2.5.6 3.9 0 5.8-4.7 10.5-10.5 10.5S22 93.9 22 88.1s4.7-10.5 10.5-10.5c2.8 0 5.3 1.1 7.2 2.9l6.5-3.8c-.4-1.2-.6-2.5-.6-3.9 0-.9.1-1.8.3-2.6l-6.8-4c-1.9 1.8-4.4 2.8-7.1 2.8-5.8 0-10.5-4.7-10.5-10.5S26.2 48 32 48c2.7 0 5.2 1.1 7.1 2.8l6.8-4c-.2-.9-.3-1.7-.3-2.6 0-7.6 6.2-13.8 13.8-13.8v4.3c-5.3 0-9.5 4.3-9.5 9.5 0 1 .2 2 .5 2.9l6.8 4c2.5-3.2 6.4-5.2 10.8-5.2v4.3c-5.3 0-9.5 4.3-9.5 9.5s4.3 9.5 9.5 9.5v4.3c-4.4 0-8.3-2.1-10.8-5.3l-6.8 4c-.3.9-.5 1.9-.5 2.9 0 5.3 4.3 9.5 9.5 9.5v4.4zM32 81.8c-3.5 0-6.4 2.9-6.4 6.4s2.9 6.4 6.4 6.4 6.4-2.9 6.4-6.4-2.9-6.4-6.4-6.4zm0-29.7c-3.5 0-6.4 2.9-6.4 6.4s2.9 6.4 6.4 6.4 6.4-2.9 6.4-6.4-2.9-6.4-6.4-6.4z"/>
+    </svg>
+  ),
+  'OpenSearch': (
+    <svg viewBox="0 0 128 128" className="w-12 h-12">
+      <path fill="#005EB8" d="M64 8C33.1 8 8 33.1 8 64s25.1 56 56 56 56-25.1 56-56S94.9 8 64 8zm24.5 80.5c-2.3 2.3-6 2.3-8.3 0L64 72.3 47.8 88.5c-2.3 2.3-6 2.3-8.3 0-2.3-2.3-2.3-6 0-8.3L55.7 64 39.5 47.8c-2.3-2.3-2.3-6 0-8.3 2.3-2.3 6-2.3 8.3 0L64 55.7l16.2-16.2c2.3-2.3 6-2.3 8.3 0 2.3 2.3 2.3 6 0 8.3L72.3 64l16.2 16.2c2.3 2.3 2.3 6 0 8.3z"/>
+      <circle fill="#005EB8" cx="64" cy="64" r="20"/>
+    </svg>
+  )
 };
 
 export default function Skills({ data }: SkillsProps) {
-  const [isVisible, setIsVisible] = useState(false);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section ref={sectionRef} id="skills" className="py-20 px-4 relative">
+    <section id="skills" className="py-20 px-4 relative">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none"></div>
 
@@ -65,119 +84,44 @@ export default function Skills({ data }: SkillsProps) {
               </h2>
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary"></div>
             </div>
+            <p className="text-gray-400 font-mono text-sm mt-4">
+              <span className="text-secondary">// </span>Languages & Tools I've worked with
+            </p>
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Skill bars - Left column */}
-          <div className="terminal-window terminal-dots rounded-2xl p-8 pt-12 space-y-6">
-            <div className="font-mono text-sm text-gray-400 mb-6">
-              <span className="text-primary">// </span>Backend & Languages
-            </div>
-            {data.slice(0, Math.ceil(data.length / 2)).map((skill, index) => {
-              const level = skillLevels[skill] || 70;
-              const icon = skillIcons[skill] || '🔧';
+        {/* Tech stack grid */}
+        <div className="terminal-window terminal-dots rounded-2xl p-8 pt-14">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9 gap-6">
+            {data.map((skill, index) => {
+              const icon = techIcons[skill];
               return (
                 <div
                   key={index}
-                  className="space-y-2 group cursor-pointer"
+                  className={`flex flex-col items-center gap-3 p-4 rounded-xl cursor-pointer transition-all duration-300 ${
+                    hoveredSkill === skill
+                      ? 'bg-primary/10 scale-110 shadow-lg shadow-primary/20'
+                      : 'hover:bg-white/5'
+                  }`}
                   onMouseEnter={() => setHoveredSkill(skill)}
                   onMouseLeave={() => setHoveredSkill(null)}
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-white font-medium font-mono text-sm flex items-center gap-2">
-                      <span className="text-lg transition-transform group-hover:scale-125">{icon}</span>
-                      <span className="text-secondary">const</span>{' '}
-                      <span className={`transition-colors ${hoveredSkill === skill ? 'text-primary' : 'text-gray-300'}`}>
-                        {skill.replace(/\s+/g, '_').replace(/[()&,]/g, '')}
-                      </span>{' '}
-                      <span className="text-gray-500">=</span>
-                    </span>
-                    <span className="text-primary font-mono text-xs">{level}%</span>
+                  <div className={`transition-all duration-300 ${hoveredSkill === skill ? 'scale-110' : ''}`}>
+                    {icon || (
+                      <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center">
+                        <span className="text-2xl">🔧</span>
+                      </div>
+                    )}
                   </div>
-                  <div className="h-2.5 bg-dark/50 rounded-full overflow-hidden border border-primary/20 group-hover:border-primary/40 transition-colors">
-                    <div
-                      className="h-full bg-gradient-to-r from-primary via-secondary to-primary rounded-full skill-bar relative"
-                      style={{
-                        '--skill-width': `${level}%`,
-                        width: isVisible ? `${level}%` : '0%',
-                        transition: 'width 1.5s ease-out'
-                      } as React.CSSProperties}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Skill bars - Right column */}
-          <div className="terminal-window terminal-dots rounded-2xl p-8 pt-12 space-y-6">
-            <div className="font-mono text-sm text-gray-400 mb-6">
-              <span className="text-primary">// </span>Tools & Infrastructure
-            </div>
-            {data.slice(Math.ceil(data.length / 2)).map((skill, index) => {
-              const level = skillLevels[skill] || 70;
-              const icon = skillIcons[skill] || '🔧';
-              return (
-                <div
-                  key={index}
-                  className="space-y-2 group cursor-pointer"
-                  onMouseEnter={() => setHoveredSkill(skill)}
-                  onMouseLeave={() => setHoveredSkill(null)}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-white font-medium font-mono text-sm flex items-center gap-2">
-                      <span className="text-lg transition-transform group-hover:scale-125">{icon}</span>
-                      <span className="text-secondary">const</span>{' '}
-                      <span className={`transition-colors ${hoveredSkill === skill ? 'text-primary' : 'text-gray-300'}`}>
-                        {skill.replace(/\s+/g, '_').replace(/[()&,]/g, '')}
-                      </span>{' '}
-                      <span className="text-gray-500">=</span>
-                    </span>
-                    <span className="text-primary font-mono text-xs">{level}%</span>
-                  </div>
-                  <div className="h-2.5 bg-dark/50 rounded-full overflow-hidden border border-primary/20 group-hover:border-primary/40 transition-colors">
-                    <div
-                      className="h-full bg-gradient-to-r from-primary via-secondary to-primary rounded-full relative"
-                      style={{
-                        width: isVisible ? `${level}%` : '0%',
-                        transition: `width 1.5s ease-out ${index * 0.1}s`
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Interactive tech stack cards */}
-        <div className="mt-12 grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
-          {data.map((skill, index) => {
-            const icon = skillIcons[skill] || '🔧';
-            return (
-              <div
-                key={index}
-                className={`glass-effect p-4 rounded-xl card-hover group text-center cursor-pointer transition-all duration-300 ${hoveredSkill === skill ? 'scale-110 border-primary/50' : ''}`}
-                onMouseEnter={() => setHoveredSkill(skill)}
-                onMouseLeave={() => setHoveredSkill(null)}
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                <div className="relative">
-                  <div className={`text-3xl mb-2 transition-all duration-300 ${hoveredSkill === skill ? 'scale-125 animate-bounce' : ''}`}>
-                    {icon}
-                  </div>
-                  <p className={`text-xs font-medium transition-colors ${hoveredSkill === skill ? 'text-primary' : 'text-gray-300'}`}>
+                  <span className={`text-xs font-mono text-center transition-colors duration-300 ${
+                    hoveredSkill === skill ? 'text-primary' : 'text-gray-400'
+                  }`}>
                     {skill.split(' ')[0]}
-                  </p>
+                  </span>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
