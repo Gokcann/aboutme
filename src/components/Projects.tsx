@@ -202,9 +202,30 @@ export default function Projects({ data }: ProjectsProps) {
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-400 text-sm leading-relaxed mb-6 min-h-[72px]">
+                    <p className="text-gray-400 text-sm leading-relaxed mb-4">
                       {project.description}
                     </p>
+
+                    {/* Highlights */}
+                    {project.highlights && project.highlights.length > 0 && (
+                      <div className={`mb-6 space-y-2 transition-all duration-500 ${isHovered ? 'opacity-100' : 'opacity-80'}`}>
+                        {project.highlights.map((highlight, hIndex) => (
+                          <div
+                            key={hIndex}
+                            className={`flex items-start gap-2 text-xs transition-all duration-300 ${
+                              isHovered ? 'translate-x-1' : ''
+                            }`}
+                            style={{ transitionDelay: `${hIndex * 50}ms` }}
+                          >
+                            <span
+                              className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors duration-300"
+                              style={{ backgroundColor: isHovered ? colors.primary : '#6B7280' }}
+                            />
+                            <span className="text-gray-400 leading-relaxed">{highlight}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
                     {/* Technologies */}
                     <div className="flex flex-wrap gap-2 mb-6">
