@@ -1,7 +1,7 @@
 {
   "personal": {
     "name": "Gökcan Akoya",
-    "title": "Software Developer",
+    "title": "Senior Backend Developer",
     "email": "gokcan.akoya@gmail.com",
     "phone": "+90 (507) 345-8765",
     "location": "Eskişehir, Turkey",
@@ -21,18 +21,18 @@
   },
   "services": [
     {
-      "title": "Backend Development",
-      "description": "Designing scalable backend systems with microservices architecture using Node.js, Java, and AWS.",
+      "title": "Microservices Architecture",
+      "description": "Designing and developing scalable microservices using Node.js/NestJS, Java/Spring Boot with event-driven architecture and cloud-native deployment.",
       "icon": "code"
     },
     {
-      "title": "Data Integration",
-      "description": "Building robust scrapers and APIs for real-time market insights and data processing.",
+      "title": "Database & Performance",
+      "description": "Optimizing PostgreSQL, implementing Redis caching, Elasticsearch for search, and strategic indexing for high-performance systems.",
       "icon": "database"
     },
     {
-      "title": "Intelligent Automation",
-      "description": "Developing algorithms for pricing optimization, competitor tracking, and business automation.",
+      "title": "Cloud & DevOps",
+      "description": "Building production-ready ecosystems with AWS (ECS, Fargate), Docker, Kubernetes, and comprehensive monitoring with Grafana/Prometheus.",
       "icon": "cpu"
     }
   ],
@@ -46,43 +46,66 @@
   ],
   "experience": [
     {
-      "title": "Eva Commerce Inc. - Software Developer",
+      "title": "Eva Commerce Inc. - Senior Software Developer",
       "period": "2024 April — Present",
       "responsibilities": [
-        "Microservices Architecture - Designing scalable backend systems with Node.js and AWS (EC2, S3).",
-        "Data Integration - Building robust scrapers and APIs for real-time market insights.",
-        "Intelligent Automation - Developing algorithms for pricing optimization and competitor tracking."
+        "Microservices Architecture & Infrastructure – Developed 5 core microservices using Node.js/NestJS (Order Processing, Product Catalog, Inventory Management, Pricing Service, Notification Service). Implemented AWS ECS Fargate deployment reducing infrastructure costs by 28%. RabbitMQ event-driven architecture reduced inter-service dependencies and deployment time by 50%.",
+        "Database & Performance Optimization – Optimized PostgreSQL queries with strategic indexing, improving critical endpoint response times by 65% (from 2.1s to 730ms). Integrated Redis caching reducing database load by 40%. Implemented Elasticsearch achieving 6x faster search performance (from 3.2s to 520ms).",
+        "Monitoring & Observability – Set up comprehensive monitoring stack using AWS CloudWatch and Grafana, reducing MTTR by 35%. Implemented distributed tracing with custom metrics for proactive performance bottleneck identification.",
+        "API Integration & Scalability – Built robust marketplace integration layer handling 60K+ daily API requests across Amazon SP-API and Walmart. Implemented rate limiting and circuit breaker patterns for high API success rate under load."
       ]
     },
     {
       "title": "Agito - Software Developer",
       "period": "2021 April — 2024 January",
       "responsibilities": [
-        "Worked on the development and maintenance of an enterprise-level, distributed backend system built around an Oracle database and featuring comprehensive PL/SQL business logic.",
-        "Bug fixes and revisions in the backend system that serves millions of users in the insurance industry."
+        "Led the migration of legacy PL/SQL business logic to modern Java (Spring Boot) architecture within a distributed backend system serving millions of users.",
+        "Improved query tuning in complex insurance policy and claims management modules on Oracle DB, reducing performance bottlenecks and shortening reporting times.",
+        "Redesigned API connections with external services (payment gateways, government integrations) for high fault tolerance and system resilience.",
+        "Resolved critical production bugs through deep-dive root cause analysis, implementing permanent solutions to improve customer satisfaction.",
+        "Contributed to non-life insurance branch module development, running parallel development cycles with life and pension branches."
       ]
     },
     {
       "title": "Metasoft - Jr. Software Developer",
       "period": "2020 May — 2021 March",
       "responsibilities": [
-        "Integration of developed software into live hospital environments.",
-        "Modification of open source projects to increase their efficiency."
+        "Developed HL7 protocol-based integrations to transfer real-time data from hospital laboratory equipment to the central Hospital Information Management System (HIMS).",
+        "Modified and adapted open-source reporting tools to meet specific institutional needs, significantly increasing operational efficiency.",
+        "Resolved data synchronization issues between desktop and web-based modules, minimizing workflow interruptions for doctors and nurses."
       ]
     }
   ],
   "skills": [
-    "Java (Spring)",
-    "SQL (PL/SQL)",
-    "JavaScript (Node & React)",
-    "Git",
-    "RDBMS",
-    "AWS (EC2, RDS)",
+    "Java",
+    "JavaScript",
+    "Spring Boot",
+    "NestJS",
+    "PostgreSQL",
     "Redis",
     "Kafka",
-    "OpenSearch"
+    "Docker",
+    "Kubernetes",
+    "AWS",
+    "Elasticsearch",
+    "MongoDB",
+    "RabbitMQ",
+    "Grafana",
+    "Git"
   ],
   "projects": [
+    {
+      "title": "Inventory Intelligence Engine",
+      "description": "High-performance inventory management system using Java 21, Spring Boot 3.4, and Spring Modulith with Virtual Threads for high-throughput concurrency. Features atomic stock reservation with Redis Lua scripts, 'Redis-first' caching with PostgreSQL fallback, and full DevOps ecosystem with Docker, Kubernetes, GitHub Actions CI/CD, and Prometheus/Micrometer metrics.",
+      "technologies": ["Java 21", "Spring Boot 3.4", "Spring Modulith", "Redis", "PostgreSQL", "Docker", "Kubernetes", "Prometheus"],
+      "github": "https://github.com/Gokcann/inventory-intelligence-engine"
+    },
+    {
+      "title": "EV-Exchange",
+      "description": "High-performance RESTful API for real-time stock market data and concurrent buy/sell orders. Features JWT authentication, secure transaction processing, and portfolio management across MongoDB and PostgreSQL. Built with ES6+ standards and MVC architecture for optimized API response times.",
+      "technologies": ["Node.js", "Express.js", "MongoDB", "PostgreSQL", "JWT", "AWS EC2"],
+      "github": "https://github.com/Gokcann/EvaExchange"
+    },
     {
       "title": "Trend Analytics",
       "description": "Enterprise SaaS platform for Trendyol sellers. Buy Box optimization with 4-factor scoring algorithm, smart pricing strategies, competitor tracking with anti-detection, and real-time notifications.",
@@ -95,18 +118,6 @@
       "technologies": ["Python", "FastAPI", "Playwright", "PostgreSQL", "React"],
       "github": "https://github.com/Gokcann/google-maps-scraper",
       "isPrivate": true
-    },
-    {
-      "title": "EvaExchange",
-      "description": "Trading application deployed on AWS infrastructure. RESTful API with MVC architecture, database migrations, and cloud-native deployment.",
-      "technologies": ["Node.js", "PostgreSQL", "AWS EC2", "AWS RDS", "Sequelize"],
-      "github": "https://github.com/Gokcann/EvaExchange"
-    },
-    {
-      "title": "BankAccount",
-      "description": "Banking system API built with Spring Boot. Features account management, transactions, and containerized deployment with Docker.",
-      "technologies": ["Java 11", "Spring Boot", "Maven", "Docker"],
-      "github": "https://github.com/Gokcann/BankAccount"
     }
   ]
 }
