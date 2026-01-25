@@ -96,13 +96,23 @@
   "projects": [
     {
       "title": "Inventory Intelligence Engine",
-      "description": "High-performance inventory management system using Java 21, Spring Boot 3.4, and Spring Modulith with Virtual Threads for high-throughput concurrency. Features atomic stock reservation with Redis Lua scripts, 'Redis-first' caching with PostgreSQL fallback, and full DevOps ecosystem with Docker, Kubernetes, GitHub Actions CI/CD, and Prometheus/Micrometer metrics.",
+      "description": "High-performance inventory management system using Java 21, Spring Boot 3.4, and Spring Modulith with Virtual Threads for high-throughput concurrency.",
+      "highlights": [
+        "Scalable Modular Architecture: Leveraging Virtual Threads for high-throughput concurrency and Hexagonal Architecture for maintainable domain logic",
+        "High-Concurrency Data Consistency: Atomic stock reservation using Redis Lua scripts with 'Redis-first' caching and PostgreSQL fallback",
+        "Enterprise-Grade DevOps: Docker, Kubernetes, GitHub Actions CI/CD, Prometheus/Micrometer metrics, and ArchUnit for architectural compliance"
+      ],
       "technologies": ["Java 21", "Spring Boot 3.4", "Spring Modulith", "Redis", "PostgreSQL", "Docker", "Kubernetes", "Prometheus"],
       "github": "https://github.com/Gokcann/inventory-intelligence-engine"
     },
     {
       "title": "EV-Exchange",
-      "description": "High-performance RESTful API for real-time stock market data and concurrent buy/sell orders. Features JWT authentication, secure transaction processing, and portfolio management across MongoDB and PostgreSQL. Built with ES6+ standards and MVC architecture for optimized API response times.",
+      "description": "High-performance RESTful API for real-time stock market data and concurrent buy/sell orders using asynchronous architecture.",
+      "highlights": [
+        "Architected high-performance RESTful API using Node.js and Express.js for real-time stock market data and concurrent buy/sell orders",
+        "Implemented JWT authentication and custom middleware for secure transaction processing and portfolio management",
+        "Engineered modular codebase with ES6+ standards and MVC architecture, optimizing API response times for high-volume trading"
+      ],
       "technologies": ["Node.js", "Express.js", "MongoDB", "PostgreSQL", "JWT", "AWS EC2"],
       "github": "https://github.com/Gokcann/EvaExchange"
     },
