@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
+import type { ReactElement } from 'react';
 
 interface SkillsProps {
   data: string[];
 }
 
 // Comprehensive icon library for technologies
-const techIcons: { [key: string]: { icon: JSX.Element; color: string; glow: string } } = {
+const techIcons: { [key: string]: { icon: ReactElement; color: string; glow: string } } = {
   'Java': {
     icon: (
       <svg viewBox="0 0 128 128" className="w-10 h-10">
